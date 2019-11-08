@@ -156,9 +156,10 @@ NAN_METHOD(mouseClick)
 
 	if (info.Length() == 2)
 	{
-		/*
-		doubleC = info[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
-		*/
+		
+		//doubleC = info[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
+		doubleC = Nan::To<bool>(info[1]).FromJust();
+		
 	}
 	else if (info.Length() > 2)
 	{
@@ -770,7 +771,7 @@ BMP buildBMP(Local<Object> info)
 
 	BMP img;
 
-	/*
+	
 	img.width = obj->Get(Nan::New("width").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.height = obj->Get(Nan::New("height").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.byteWidth = obj->Get(Nan::New("byteWidth").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
@@ -782,7 +783,7 @@ BMP buildBMP(Local<Object> info)
 	//Convert the buffer to a uint8_t which createMMBitmap requires.
 	img.image = (uint8_t *)malloc(img.byteWidth * img.height);
 	memcpy(img.image, buf, img.byteWidth * img.height);
-	*/
+	
 	return img;
  }
 
