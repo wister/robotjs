@@ -23,6 +23,26 @@ This is a work in progress so the exported functions could change at any time be
 - [FAQ](#faq)
 - [License](#license)
 
+## Build error with Node v13
+```
+$ if not defined npm_config_node_gyp (node ".\AppData\Roaming\nvm\v13.0.1\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" rebuild )  else (node "C:\Users\Wister\AppData\Roaming\nvm\v13.0.1\node_modules\npm\node_modules\node-gyp\bin\node-gyp.js" rebuild )
+Building the projects in this solution one at a time. To enable parallel build, please add the "/m" switch.
+  robotjs.cc
+  win_delay_load_hook.cc
+.\node_modules\robotjs\src\os.h(26): warning C4005: 'STRICT': macro redefinition (compiling source file ..\src\robotjs.cc) [.\node_modules\robotjs\build\robotjs .vcxproj]
+  c:\program files (x86)\windows kits\10\include\10.0.17763.0\shared\minwindef.h(23): note: see previous definition of 'STRICT' (compiling source file ..\src\robotjs.cc)
+.\node_modules\robotjs\src\robotjs.cc(159): error C2664: 'bool v8::Value::BooleanValue(v8::Isolate *) const': cannot convert argument 1 from 'v8::Local<v8::Context>' to 'v8::Isolate *' [C:\Users\Wist er\Documents\github\tracker\node_modules\robotjs\build\robotjs.vcxproj]
+  .\node_modules\robotjs\src\robotjs.cc(159): note: No user-defined-conversion operator available that can perform this conversion, or the operator cannot be called
+.\node_modules\robotjs\src\robotjs.cc(434): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+.\node_modules\robotjs\src\robotjs.cc(768): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+.\node_modules\robotjs\src\robotjs.cc(769): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+.\node_modules\robotjs\src\robotjs.cc(770): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+.\node_modules\robotjs\src\robotjs.cc(771): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+.\node_modules\robotjs\src\robotjs.cc(772): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+.\node_modules\robotjs\src\robotjs.cc(774): error C2661: 'v8::Object::Get': no overloaded function takes 1 arguments [.\node_modules\robotjs\build\robotjs.vcxpr oj]
+gyp ERR! build error
+```
+
 ## Installation
 
 Install RobotJS using npm:
