@@ -418,7 +418,7 @@ int CheckKeyFlags(char* f, MMKeyFlags* flags)
 	return 0;
 }
 
-int GetFlagsFromString(v8::Local<v8::Value> value, MMKeyFlags* flags)
+int GetFlagsFromString(MaybeLocal<v8::Value> value, MMKeyFlags* flags)
 {
 	v8::String::Utf8Value fstr(v8::Isolate::GetCurrent(), Nan::To<v8::String>(value).ToLocalChecked());
 	return CheckKeyFlags(*fstr, flags);
@@ -436,7 +436,7 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 		for (uint32_t i = 0; i < a->Length(); i++)
 		{
 			MaybeLocal<v8::Value> v(Nan::Get(a, i).ToLocalChecked());
-			if (!v->IsString()) return -2;
+			if (!Nan::Get(a, i).ToLocalChecked()->IsString()) return -2;
 
 			MMKeyFlags f = MOD_NONE;
 			const int rv = GetFlagsFromString(v, &f);
