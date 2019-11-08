@@ -432,10 +432,10 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 	
 	if (value->IsArray())
 	{
-		v8::Local<v8::Array> a = v8::Local<v8::Array>::Cast(value);
+		v8::Local<v8::Array> a = v8::Local<v8::Array>::Cast(value).ToLocalChecked();
 		for (uint32_t i = 0; i < a->Length(); i++)
 		{
-			MaybeLocal<v8::Value> v(Nan::Get(a, i));
+			MaybeLocal<v8::Value> v(Nan::Get(a, i)).ToLocalChecked();
 			if (!v->IsString()) return -2;
 
 			MMKeyFlags f = MOD_NONE;
