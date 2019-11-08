@@ -421,7 +421,7 @@ int CheckKeyFlags(char* f, MMKeyFlags* flags)
 int GetFlagsFromString(v8::Local<v8::Value> value, MMKeyFlags* flags)
 {
 	//v8::String::Utf8Value fstr(v8::Isolate::GetCurrent(), Nan::To<v8::String>(value)ToLocalChecked()).ToLocalChecked();
-	Nan::Utf8String(Nan::To<v8::String>(value));
+	Nan::MaybeLocal<v8::String> v = Nan::Utf8String(Nan::To<v8::String>(value));
 	return CheckKeyFlags(*fstr, flags);
 }
 
