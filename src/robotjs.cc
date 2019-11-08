@@ -432,7 +432,7 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 		for (uint32_t i = 0; i < a->Length(); i++)
 		{
 			//v8::Local<v8::Value> v(a->Get(i));
-			v8::Local<v8::Value> v = Nan::Get(a, i);
+			v8::Local<v8::Value> v = Nan::Get(a, i).ToLocal();
 			if (!v->IsString()) return -2;
 
 			MMKeyFlags f = MOD_NONE;
