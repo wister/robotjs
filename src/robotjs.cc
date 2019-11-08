@@ -431,8 +431,8 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 		v8::Local<v8::Array> a = v8::Local<v8::Array>::Cast(value);
 		for (uint32_t i = 0; i < a->Length(); i++)
 		{
-			//v8::Local<v8::Value> v(a->Get(Nan::GetCurrentContext(), i));
-			v8::Local<v8::Value> v = Nan::Get(a, i).toLocalChecked();
+			//v8::Local<v8::Value> v(a->Get(i));
+			Nan::MaybeLocal<v8::Value> v = Nan::Get(a, i).toLocalChecked();
 			if (!v->IsString()) return -2;
 
 			MMKeyFlags f = MOD_NONE;
