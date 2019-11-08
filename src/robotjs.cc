@@ -156,7 +156,9 @@ NAN_METHOD(mouseClick)
 
 	if (info.Length() == 2)
 	{
+		/*
 		doubleC = info[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
+		*/
 	}
 	else if (info.Length() > 2)
 	{
@@ -426,6 +428,7 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 	if (!flags) return -1;
 
 	//Optionally allow an array of flag strings to be passed.
+	/*
 	if (value->IsArray())
 	{
 		v8::Local<v8::Array> a = v8::Local<v8::Array>::Cast(value);
@@ -442,6 +445,7 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 		}
 		return 0;
 	}
+	*/
 
 	//If it's not an array, it should be a single string value.
 	return GetFlagsFromString(value, flags);
@@ -765,6 +769,7 @@ BMP buildBMP(Local<Object> info)
 
 	BMP img;
 
+	/*
 	img.width = obj->Get(Nan::New("width").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.height = obj->Get(Nan::New("height").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.byteWidth = obj->Get(Nan::New("byteWidth").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
@@ -776,7 +781,7 @@ BMP buildBMP(Local<Object> info)
 	//Convert the buffer to a uint8_t which createMMBitmap requires.
 	img.image = (uint8_t *)malloc(img.byteWidth * img.height);
 	memcpy(img.image, buf, img.byteWidth * img.height);
-
+	*/
 	return img;
  }
 
