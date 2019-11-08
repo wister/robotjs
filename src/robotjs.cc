@@ -156,10 +156,7 @@ NAN_METHOD(mouseClick)
 
 	if (info.Length() == 2)
 	{
-		
-		//doubleC = info[1]->BooleanValue(Nan::GetCurrentContext()).FromJust();
 		doubleC = Nan::To<bool>(info[1]).FromJust();
-		
 	}
 	else if (info.Length() > 2)
 	{
@@ -420,8 +417,7 @@ int CheckKeyFlags(char* f, MMKeyFlags* flags)
 
 int GetFlagsFromString(v8::Local<v8::Value> value, MMKeyFlags* flags)
 {
-	//v8::String::Utf8Value fstr(v8::Isolate::GetCurrent(), Nan::To<v8::String>(value)ToLocalChecked()).ToLocalChecked();
-	Nan::MaybeLocal<v8::String> v = Nan::Utf8String(Nan::To<v8::String>(value));
+	v8::String::Utf8Value fstr(v8::Isolate::GetCurrent(), Nan::To<v8::String>(value).ToLocalChecked());
 	return CheckKeyFlags(*fstr, flags);
 }
 
@@ -430,14 +426,13 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 	if (!flags) return -1;
 
 	//Optionally allow an array of flag strings to be passed.
-	
 	if (value->IsArray())
 	{
 		v8::Local<v8::Array> a = v8::Local<v8::Array>::Cast(value);
 		for (uint32_t i = 0; i < a->Length(); i++)
 		{
-			Nan::MaybeLocal<v8::Value> v = Nan::Get(a, i).ToLocalChecked();
-			if (!Nan::Get(a, i).ToLocalChecked()->IsString()) return -2;
+			v8::Local<v8::Value> v(a->Get(i));
+			if (!v->IsString()) return -2;
 
 			MMKeyFlags f = MOD_NONE;
 			const int rv = GetFlagsFromString(v, &f);
@@ -447,7 +442,6 @@ int GetFlagsFromValue(v8::Local<v8::Value> value, MMKeyFlags* flags)
 		}
 		return 0;
 	}
-	
 
 	//If it's not an array, it should be a single string value.
 	return GetFlagsFromString(value, flags);
@@ -771,19 +765,18 @@ BMP buildBMP(Local<Object> info)
 
 	BMP img;
 
-	
-	img.width = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("width"))).FromJust();
-	img.height = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("height"))).FromJust();
-	img.byteWidth = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("byteWidth"))).FromJust();
-	img.bitsPerPixel = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("bitsPerPixel").ToLocalChecked())).FromJust();
-	img.bytesPerPixel = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("bytesPerPixel").ToLocalChecked())).FromJust();
+	img.width = obj->Get(Nan::New("width").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.height = obj->Get(Nan::New("height").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.byteWidth = obj->Get(Nan::New("byteWidth").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.bitsPerPixel = obj->Get(Nan::New("bitsPerPixel").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.bytesPerPixel = obj->Get(Nan::New("bytesPerPixel").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 
-	char* buf = node::Buffer::Data(Nan::Get((obj, Nan::New("image").ToLocalChecked()));
+	char* buf = node::Buffer::Data(obj->Get(Nan::New("image").ToLocalChecked()));
 
 	//Convert the buffer to a uint8_t which createMMBitmap requires.
 	img.image = (uint8_t *)malloc(img.byteWidth * img.height);
 	memcpy(img.image, buf, img.byteWidth * img.height);
-	
+
 	return img;
  }
 
