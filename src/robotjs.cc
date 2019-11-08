@@ -420,7 +420,7 @@ int CheckKeyFlags(char* f, MMKeyFlags* flags)
 
 int GetFlagsFromString(MaybeLocal<v8::Value> value, MMKeyFlags* flags)
 {
-	Nan::Utf8String fstr(v8::Isolate::GetCurrent(), value);
+	Nan::Utf8String fstr(value);
 	return CheckKeyFlags(*fstr, flags);
 }
 
