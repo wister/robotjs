@@ -766,11 +766,20 @@ BMP buildBMP(Local<Object> info)
 
 	BMP img;
 
+	/*
 	img.width = obj->Get(Nan::New("width").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.height = obj->Get(Nan::New("height").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.byteWidth = obj->Get(Nan::New("byteWidth").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.bitsPerPixel = obj->Get(Nan::New("bitsPerPixel").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
 	img.bytesPerPixel = obj->Get(Nan::New("bytesPerPixel").ToLocalChecked())->Uint32Value(Nan::GetCurrentContext()).FromJust();
+
+	char* buf = node::Buffer::Data(obj->Get(Nan::New("image").ToLocalChecked()));
+	*/
+	img.width = Nan::Get(obj, Nan::New("width").ToLocalChecked()).ToLocalChecked()->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.height = Nan::Get(obj, Nan::New("height").ToLocalChecked()).ToLocalChecked()->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.byteWidth = Nan::Get(obj, Nan::New("byteWidth").ToLocalChecked()).ToLocalChecked()->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.bitsPerPixel = Nan::Get(obj, Nan::New("bitsPerPixel").ToLocalChecked()).ToLocalChecked()->Uint32Value(Nan::GetCurrentContext()).FromJust();
+	img.bytesPerPixel = Nan::Get(obj, Nan::New("bytesPerPixel").ToLocalChecked()).ToLocalChecked()->Uint32Value(Nan::GetCurrentContext()).FromJust();
 
 	char* buf = node::Buffer::Data(obj->Get(Nan::New("image").ToLocalChecked()));
 
