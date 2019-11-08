@@ -777,7 +777,7 @@ BMP buildBMP(Local<Object> info)
 	img.bitsPerPixel = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("bitsPerPixel").ToLocalChecked())).FromJust();
 	img.bytesPerPixel = Nan::To<std::uint32_t>(Nan::Get(obj, Nan::New("bytesPerPixel").ToLocalChecked())).FromJust();
 
-	char* buf = node::Buffer::Data(obj->Get(Nan::GetCurrentContext(), Nan::New("image").ToLocalChecked()));
+	char* buf = node::Buffer::Data(Nan::Get((obj, Nan::New("image").ToLocalChecked()));
 
 	//Convert the buffer to a uint8_t which createMMBitmap requires.
 	img.image = (uint8_t *)malloc(img.byteWidth * img.height);
