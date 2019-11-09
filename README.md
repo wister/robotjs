@@ -23,7 +23,9 @@ This is a work in progress so the exported functions could change at any time be
 - [FAQ](#faq)
 - [License](#license)
 
-## Build error with Node v13
+## This fork works with Node v13
+
+## Build error with Node v13[FIXED]
 ```
 $ if not defined npm_config_node_gyp (node ".\AppData\Roaming\nvm\v13.0.1\node_modules\npm\node_modules\npm-lifecycle\node-gyp-bin\\..\..\node_modules\node-gyp\bin\node-gyp.js" rebuild )  else (node "C:\Users\Wister\AppData\Roaming\nvm\v13.0.1\node_modules\npm\node_modules\node-gyp\bin\node-gyp.js" rebuild )
 Building the projects in this solution one at a time. To enable parallel build, please add the "/m" switch.
