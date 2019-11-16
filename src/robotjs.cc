@@ -987,5 +987,5 @@ void Init2(v8::Local<v8::Object> exports) {
 //    Init2(exports);
 //}
 
-NAN_MODULE_WORKER_ENABLED(NODE_GYP_MODULE_NAME, Init2)
+NAN_MODULE_WORKER_ENABLED(NODE_GYP_MODULE_NAME, InitAll2)
 //NODE_MODULE(robotjs, InitAll2)
