@@ -874,17 +874,17 @@ NAN_MODULE_INIT(InitAll)
 
 NAN_MODULE_INIT(InitAll2)
 {
-    NAN_EXPORT(target, dragMouse);
-    NAN_EXPORT(target, moveMouse);
+    //NAN_EXPORT(target, dragMouse);
+    //NAN_EXPORT(target, moveMouse);
     NAN_EXPORT(target, moveMouseSmooth);
-    NAN_EXPORT(target, getMousePos);
+    //NAN_EXPORT(target, getMousePos);
     NAN_EXPORT(target, mouseClick);
     NAN_EXPORT(target, mouseToggle);
-    NAN_EXPORT(target, scrollMouse);
+    //NAN_EXPORT(target, scrollMouse);
     NAN_EXPORT(target, setMouseDelay);
     NAN_EXPORT(target, keyToggle);
-    NAN_EXPORT(target, typeString);
-    NAN_EXPORT(target, typeStringDelayed);
+    //NAN_EXPORT(target, typeString);
+    //NAN_EXPORT(target, typeStringDelayed);
     NAN_EXPORT(target, setKeyboardDelay);
     NAN_EXPORT(target, getPixelColor);
     NAN_EXPORT(target, getScreenSize);
