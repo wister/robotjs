@@ -894,4 +894,97 @@ NAN_MODULE_INIT(InitAll2)
     NAN_EXPORT(target, setXDisplayName);
 }
 
-NODE_MODULE(robotjs, InitAll2)
+void Init2(v8::Local<v8::Object> exports) {
+  v8::Local<v8::Context> context = exports->CreationContext();
+  exports->Set(context,
+               Nan::New("dragMouse").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(dragMouse)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("moveMouse").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(moveMouse)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("moveMouseSmooth").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(moveMouseSmooth)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("getMousePos").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(getMousePos)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("mouseClick").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(mouseClick)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("mouseToggle").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(mouseToggle)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("scrollMouse").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(scrollMouse)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("setMouseDelay").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(setMouseDelay)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("keyToggle").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(keyToggle)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("typeString").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(typeString)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("typeStringDelayed").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(typeStringDelayed)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("getPixelColor").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(getPixelColor)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("getScreenSize").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(getScreenSize)
+                   ->GetFunction(context)
+                   .ToLocalChecked());                                                                                               
+  exports->Set(context,
+               Nan::New("captureScreen").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(captureScreen)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("getColor").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(getColor)
+                   ->GetFunction(context)
+                   .ToLocalChecked());
+  exports->Set(context,
+               Nan::New("getXDisplayName").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(getXDisplayName)
+                   ->GetFunction(context)
+                   .ToLocalChecked());       
+  exports->Set(context,
+               Nan::New("setXDisplayName").ToLocalChecked(),
+               Nan::New<v8::FunctionTemplate>(setXDisplayName)
+                   ->GetFunction(context)
+                   .ToLocalChecked());                                                     
+}
+
+NODE_MODULE_INIT(/* exports, module, context */) {
+    Init2(exports);
+}
+
+//NODE_MODULE(robotjs, InitAll2)
