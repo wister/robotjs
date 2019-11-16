@@ -987,5 +987,5 @@ NODE_MODULE_INIT(/* exports, module, context */) {
     Init2(exports);
 }
 
-//NAN_MODULE_WORKER_ENABLED(NODE_GYP_MODULE_NAME, InitAll2)
+//NAN_MODULE_WORKER_ENABLED(NODE_GYP_MODULE_NAME, InitAll2) //This also works, but needs to fix grayed out functions
 //NODE_MODULE(robotjs, InitAll)
